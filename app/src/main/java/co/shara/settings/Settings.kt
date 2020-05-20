@@ -3,7 +3,6 @@ package co.shara.settings
 import android.content.SharedPreferences
 import androidx.core.content.edit
 
-
 class Settings(
     private val settings: SharedPreferences
 ) {

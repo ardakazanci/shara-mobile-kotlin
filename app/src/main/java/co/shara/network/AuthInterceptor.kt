@@ -5,7 +5,7 @@ import okhttp3.Interceptor
 import okhttp3.Response
 
 class AuthInterceptor(
-    private val settings: Settings,
+    private val settings: Settings
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
