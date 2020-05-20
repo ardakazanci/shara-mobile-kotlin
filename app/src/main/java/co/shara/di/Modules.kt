@@ -19,7 +19,8 @@ private val loadFeature by lazy {
     loadKoinModules(
         listOf(
             retrofitModule,
-            databaseModule
+            databaseModule,
+            daoModule
         )
     )
 }
@@ -56,4 +57,8 @@ val databaseModule = module {
             "shara_db"
         ).build()
     }
+}
+
+val daoModule = module {
+    single { get<Database>().userDao() }
 }
