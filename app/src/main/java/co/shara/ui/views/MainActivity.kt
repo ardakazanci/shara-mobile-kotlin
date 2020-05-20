@@ -1,7 +1,8 @@
-package co.shara
+package co.shara.ui.views
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import co.shara.R
 
 class MainActivity : AppCompatActivity() {
 
