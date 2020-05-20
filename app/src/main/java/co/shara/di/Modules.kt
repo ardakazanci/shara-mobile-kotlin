@@ -1,9 +1,11 @@
 package co.shara.di
 
+import android.content.Context
 import androidx.room.Room
 import co.shara.BuildConfig
 import co.shara.data.Database
 import co.shara.network.AuthInterceptor
+import co.shara.settings.Settings
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -20,7 +22,8 @@ private val loadFeature by lazy {
         listOf(
             retrofitModule,
             databaseModule,
-            daoModule
+            daoModule,
+            settingsModule
         )
     )
 }
@@ -61,4 +64,16 @@ val databaseModule = module {
 
 val daoModule = module {
     single { get<Database>().userDao() }
+}
+
+val settingsModule = module {
+    single {
+        androidContext().getSharedPreferences(
+            "shara_settings",
+            Context.MODE_PRIVATE
+        )
+    }
+    single {
+        Settings(get())
+    }
 }
