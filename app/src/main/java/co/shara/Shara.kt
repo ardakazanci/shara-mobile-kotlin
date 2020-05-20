@@ -2,6 +2,7 @@ package co.shara
 
 import android.app.Application
 import androidx.annotation.Nullable
+import co.shara.di.injectFeature
 import org.jetbrains.annotations.NotNull
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -16,7 +17,7 @@ class Shara : Application() {
 
         initTimber()
         initKoin()
-//        injectFeature()
+        injectFeature()
     }
 
     private fun initTimber() {
