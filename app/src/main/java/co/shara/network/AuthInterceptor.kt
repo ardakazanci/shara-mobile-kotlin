@@ -1,5 +1,6 @@
 package co.shara.network
 
+import co.shara.settings.Settings
 import okhttp3.Interceptor
 import okhttp3.Response
 
