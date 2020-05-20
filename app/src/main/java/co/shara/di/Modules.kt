@@ -1,9 +1,12 @@
 package co.shara.di
 
+import androidx.room.Room
 import co.shara.BuildConfig
+import co.shara.data.Database
 import co.shara.network.AuthInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -15,7 +18,8 @@ private val loadFeature by lazy {
 
     loadKoinModules(
         listOf(
-            retrofitModule
+            retrofitModule,
+            databaseModule
         )
     )
 }
@@ -41,5 +45,15 @@ val retrofitModule = module(override = true) {
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
+    }
+}
+
+val databaseModule = module {
+    single {
+        Room.databaseBuilder(
+            androidContext(),
+            Database::class.java,
+            "shara_db"
+        ).build()
     }
 }
