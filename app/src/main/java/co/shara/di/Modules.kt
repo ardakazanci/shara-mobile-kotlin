@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import co.shara.BuildConfig
 import co.shara.data.Database
+import co.shara.data.retrofit.UserAPI
 import co.shara.network.AuthInterceptor
 import co.shara.settings.Settings
 import okhttp3.OkHttpClient
@@ -13,6 +14,7 @@ import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 
 fun injectFeature() = loadFeature
 
@@ -21,6 +23,7 @@ private val loadFeature by lazy {
     loadKoinModules(
         listOf(
             retrofitModule,
+            networkingModule,
             databaseModule,
             daoModule,
             settingsModule
@@ -50,6 +53,10 @@ val retrofitModule = module(override = true) {
             .client(client)
             .build()
     }
+}
+
+val networkingModule = module {
+    single<UserAPI> { get<Retrofit>().create() }
 }
 
 val databaseModule = module {
