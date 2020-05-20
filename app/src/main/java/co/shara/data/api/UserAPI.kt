@@ -1,4 +1,4 @@
-package co.shara.data.retrofit
+package co.shara.data.api
 
 import co.shara.data.model.User
 import retrofit2.http.Body
