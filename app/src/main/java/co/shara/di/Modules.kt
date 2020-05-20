@@ -8,9 +8,11 @@ import co.shara.data.repo.UserRepository
 import co.shara.data.retrofit.UserAPI
 import co.shara.network.AuthInterceptor
 import co.shara.settings.Settings
+import co.shara.ui.viewmodel.UserViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -28,6 +30,7 @@ private val loadFeature by lazy {
             databaseModule,
             daoModule,
             repositoriesModule,
+            viewModelsModule,
             settingsModule
         )
     )
@@ -77,6 +80,10 @@ val daoModule = module {
 
 val repositoriesModule = module {
     single { UserRepository(get(), get(), get()) }
+}
+
+val viewModelsModule = module {
+    viewModel { UserViewModel(get()) }
 }
 
 val settingsModule = module {
