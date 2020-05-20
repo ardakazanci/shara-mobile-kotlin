@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import co.shara.BuildConfig
 import co.shara.data.Database
+import co.shara.data.repo.UserRepository
 import co.shara.data.retrofit.UserAPI
 import co.shara.network.AuthInterceptor
 import co.shara.settings.Settings
@@ -26,6 +27,7 @@ private val loadFeature by lazy {
             networkingModule,
             databaseModule,
             daoModule,
+            repositoriesModule,
             settingsModule
         )
     )
@@ -71,6 +73,10 @@ val databaseModule = module {
 
 val daoModule = module {
     single { get<Database>().userDao() }
+}
+
+val repositoriesModule = module {
+    single { UserRepository(get(), get(), get()) }
 }
 
 val settingsModule = module {
