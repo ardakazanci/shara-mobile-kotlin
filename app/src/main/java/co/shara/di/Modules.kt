@@ -4,10 +4,13 @@ import android.content.Context
 import androidx.room.Room
 import co.shara.BuildConfig
 import co.shara.data.Database
+import co.shara.data.api.OrderAPI
 import co.shara.data.api.UserAPI
+import co.shara.data.repo.OrderRepository
 import co.shara.data.repo.UserRepository
 import co.shara.network.AuthInterceptor
 import co.shara.settings.Settings
+import co.shara.ui.viewmodel.OrderViewModel
 import co.shara.ui.viewmodel.UserViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -62,6 +65,7 @@ val retrofitModule = module(override = true) {
 
 val networkingModule = module {
     single<UserAPI> { get<Retrofit>().create() }
+    single<OrderAPI> { get<Retrofit>().create() }
 }
 
 val databaseModule = module {
@@ -80,10 +84,12 @@ val daoModule = module {
 
 val repositoriesModule = module {
     single { UserRepository(get(), get(), get()) }
+    single { OrderRepository(get(), get(), get()) }
 }
 
 val viewModelsModule = module {
     viewModel { UserViewModel(get()) }
+    viewModel { OrderViewModel(get()) }
 }
 
 val settingsModule = module {
