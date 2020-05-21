@@ -18,9 +18,9 @@
         style="@style/authTextInputEditTextUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/margin_normal"
         android:hint="@string/hint_enter_your_name"
-        android:inputType="textCapWords" />
+        android:inputType="textCapSentences" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etEmail"
