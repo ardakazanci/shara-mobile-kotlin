@@ -25,4 +25,36 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <!--edit texts-->
+    <style name="authTextInputEditText">
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:drawablePadding">@dimen/margin_normal</item>
+        <item name="android:layout_marginEnd">@dimen/margin_normal</item>
+        <item name="android:layout_marginRight">@dimen/margin_normal</item>
+        <item name="android:layout_marginStart">@dimen/margin_normal</item>
+        <item name="android:layout_marginLeft">@dimen/margin_normal</item>
+        <item name="android:background">@drawable/bg_auth_edit_text_background</item>
+        <item name="android:paddingTop">@dimen/margin_medium</item>
+        <item name="android:paddingBottom">@dimen/margin_medium</item>
+        <item name="android:paddingLeft">@dimen/margin_normal</item>
+        <item name="android:paddingRight">@dimen/margin_normal</item>
+        <item name="android:paddingStart">@dimen/margin_normal</item>
+        <item name="android:paddingEnd">@dimen/margin_normal</item>
+    </style>
+
+    <style name="authTextInputEditTextPhone" parent="authTextInputEditText">
+        <item name="android:drawableLeft">@drawable/ic_phone_number</item>
+        <item name="android:drawableStart">@drawable/ic_phone_number</item>
+    </style>
+
+    <style name="authTextInputEditTextEmail" parent="authTextInputEditText">
+        <item name="android:drawableLeft">@drawable/ic_email</item>
+        <item name="android:drawableStart">@drawable/ic_email</item>
+    </style>
+
+    <style name="authTextInputEditTextPin" parent="authTextInputEditText">
+        <item name="android:drawableLeft">@drawable/ic_pin</item>
+        <item name="android:drawableStart">@drawable/ic_pin</item>
+    </style>
+
 </resources>

@@ -5,6 +5,7 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.text.style.UnderlineSpan
 import androidx.core.content.res.ResourcesCompat
+import co.shara.R
 import java.util.*
 
 object Util {

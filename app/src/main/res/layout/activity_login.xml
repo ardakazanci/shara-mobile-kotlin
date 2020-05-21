@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/margin_normal"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".ui.views.LoginActivity">
@@ -11,47 +11,41 @@
     <ImageView
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:src="@drawable/ic_shara_logo" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etPhoneNumber"
+        style="@style/authTextInputEditTextPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:hint="@string/hint_enter_your_phone_number"
+        android:inputType="phone"
+        android:maxLength="15" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etPin"
+        style="@style/authTextInputEditTextPin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
-        android:hint="@string/hint_enter_your_phone_number">
+        android:hint="@string/hint_enter_your_password"
+        android:inputType="textPassword" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextPhoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="phone" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:hint="@string/hint_enter_your_password">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:padding="8dp"
+        android:layout_height="@dimen/height_button"
+        android:layout_marginStart="@dimen/margin_normal"
+        android:layout_marginLeft="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_largest"
+        android:layout_marginEnd="@dimen/margin_normal"
+        android:layout_marginRight="@dimen/margin_normal"
         android:text="@string/login"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textAllCaps="false"
+        app:backgroundTint="?attr/colorSecondary"
+        app:cornerRadius="@dimen/corner_radius_rounded_button"
+        app:fontFamily="@font/poppins_semibold" />
 
     <TextView
         android:id="@+id/textViewSignUp"
@@ -60,6 +54,6 @@
         android:layout_marginTop="@dimen/margin_normal"
         android:text="@string/don_t_have_an_account_sign_up"
         android:textAlignment="center"
-        android:textSize="16sp" />
+        android:textSize="18sp" />
 
 </LinearLayout>
