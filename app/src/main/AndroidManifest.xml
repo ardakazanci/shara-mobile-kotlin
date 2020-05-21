@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="co.shara">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".Shara"
         android:allowBackup="true"

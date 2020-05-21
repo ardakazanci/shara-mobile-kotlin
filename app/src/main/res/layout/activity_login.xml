@@ -43,6 +43,7 @@
         android:layout_marginRight="@dimen/margin_normal"
         android:text="@string/login"
         android:textAllCaps="false"
+        android:onClick="validateUser"
         app:backgroundTint="?attr/colorSecondary"
         app:cornerRadius="@dimen/corner_radius_rounded_button"
         app:fontFamily="@font/poppins_semibold" />

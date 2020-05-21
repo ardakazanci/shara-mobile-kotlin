@@ -7,11 +7,15 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import co.shara.R
+import co.shara.ui.viewmodel.UserViewModel
 import co.shara.util.Util
 import co.shara.util.makeStatusBarTransparent
 import kotlinx.android.synthetic.main.activity_register.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterActivity : AppCompatActivity() {
+
+    private val userViewModel: UserViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
