@@ -42,7 +42,7 @@ private val loadFeature by lazy {
 val retrofitModule = module(override = true) {
     single {
 
-        val baseUrl = "https://shara-api.herokuapp.com/"
+        val baseUrl = "https://shara-api.herokuapp.com"
 
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = when (BuildConfig.BUILD_TYPE) {
