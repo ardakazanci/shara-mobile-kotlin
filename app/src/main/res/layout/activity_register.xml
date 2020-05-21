@@ -60,6 +60,7 @@
         android:layout_marginEnd="@dimen/margin_normal"
         android:layout_marginRight="@dimen/margin_normal"
         android:text="@string/register"
+        android:onClick="validateUser"
         android:textAllCaps="false"
         app:backgroundTint="?attr/colorSecondary"
         app:cornerRadius="@dimen/corner_radius_rounded_button"
