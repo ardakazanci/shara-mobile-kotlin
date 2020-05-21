@@ -22,8 +22,7 @@ class OrderRepository(
             val user = User(
                 0,
                 loginResponse?.user_id,
-                loginResponse?.first_name,
-                loginResponse?.last_name,
+                loginResponse?.name,
                 loginResponse?.phone_number,
                 loginResponse?.email
             )
@@ -42,8 +41,7 @@ class OrderRepository(
             val user = User(
                 0,
                 loginResponse?.user_id,
-                loginResponse?.first_name,
-                loginResponse?.last_name,
+                loginResponse?.name,
                 loginResponse?.phone_number,
                 loginResponse?.email
             )

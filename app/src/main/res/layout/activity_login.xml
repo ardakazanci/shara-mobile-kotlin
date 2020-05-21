@@ -52,6 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
+        android:onClick="register"
         android:text="@string/don_t_have_an_account_sign_up"
         android:textAlignment="center"
         android:textSize="18sp" />
