@@ -1,29 +1,35 @@
 package co.shara.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
-import co.shara.data.model.User
+import co.shara.data.model.Order
+import co.shara.data.model.Product
 import co.shara.data.repo.OrderRepository
-import co.shara.data.retrofit.UserLogin
-import co.shara.data.retrofit.UserRegister
+import co.shara.data.retrofit.CreateOrder
+import co.shara.data.retrofit.CreateOrderProduct
+import co.shara.data.retrofit.OrderResponse
 import co.shara.network.NetworkResult
 
 class OrderViewModel(
     private val orderRepository: OrderRepository
 ) : ViewModel() {
 
-    suspend fun registerUser(userRegister: UserRegister): NetworkResult<User> {
-        return orderRepository.registerUser(userRegister)
+    suspend fun createOrder(createOrder: CreateOrder): NetworkResult<Order> {
+        return orderRepository.createOrder(createOrder)
     }
 
-    suspend fun loginUser(userLogin: UserLogin): NetworkResult<User> {
-        return orderRepository.loginUser(userLogin)
+    suspend fun createOrderProduct(createOrderProduct: CreateOrderProduct): NetworkResult<Product> {
+        return orderRepository.createOrderProduct(createOrderProduct)
     }
 
-    suspend fun saveUser(user: User) {
-        return orderRepository.saveUser(user)
+    suspend fun fetchMyOrders(): NetworkResult<OrderResponse> {
+        return orderRepository.fetchMyOrders()
     }
 
-    suspend fun getUserById(userId: String): User {
-        return orderRepository.getUserById(userId)
+    suspend fun saveOrder(order: Order) {
+        return orderRepository.saveOrder(order)
+    }
+
+    suspend fun saveOrderProduct(product: Product) {
+        return orderRepository.saveOrderProduct(product)
     }
 }
