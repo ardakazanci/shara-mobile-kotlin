@@ -7,6 +7,7 @@ import co.shara.data.model.Order
 import co.shara.data.model.Product
 import co.shara.data.retrofit.CreateOrder
 import co.shara.data.retrofit.CreateOrderProduct
+import co.shara.data.retrofit.OrderResponse
 import co.shara.network.NetworkResult
 import co.shara.network.safeApiCall
 import co.shara.settings.Settings
@@ -38,6 +39,13 @@ class OrderRepository(
                 response?.id?.toInt()
             )
             product.copy()
+        }
+    }
+
+    suspend fun fetchMyOrders(): NetworkResult<OrderResponse> {
+        return safeApiCall(Dispatchers.IO) {
+            val response = orderAPI.fetchMyOrders()
+            response!!.copy()
         }
     }
 
