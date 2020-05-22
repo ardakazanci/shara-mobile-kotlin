@@ -80,6 +80,8 @@ val databaseModule = module {
 
 val daoModule = module {
     single { get<Database>().userDao() }
+    single { get<Database>().orderDao() }
+    single { get<Database>().productDao() }
 }
 
 val repositoriesModule = module {
