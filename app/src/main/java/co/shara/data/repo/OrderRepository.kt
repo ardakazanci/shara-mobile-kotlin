@@ -1,64 +1,51 @@
 package co.shara.data.repo
 
 import co.shara.data.api.OrderAPI
-import co.shara.data.dao.UserDao
-import co.shara.data.model.User
-import co.shara.data.retrofit.UserLogin
-import co.shara.data.retrofit.UserRegister
+import co.shara.data.dao.OrderDao
+import co.shara.data.dao.ProductDao
+import co.shara.data.model.Order
+import co.shara.data.model.Product
+import co.shara.data.retrofit.CreateOrder
+import co.shara.data.retrofit.CreateOrderProduct
 import co.shara.network.NetworkResult
 import co.shara.network.safeApiCall
 import co.shara.settings.Settings
 import kotlinx.coroutines.Dispatchers
 
 class OrderRepository(
-    private val userDao: UserDao,
+    private val orderDao: OrderDao,
+    private val productDao: ProductDao,
     private val orderAPI: OrderAPI,
     private val settings: Settings
 ) {
 
-    suspend fun registerUser(userRegister: UserRegister): NetworkResult<User> {
+    suspend fun createOrder(createOrder: CreateOrder): NetworkResult<Order> {
         return safeApiCall(Dispatchers.IO) {
-            val loginResponse = orderAPI.registerUser(userRegister)
-            val user = User(
+            val response = orderAPI.createOrder(createOrder)
+            val order = Order(
                 0,
-                loginResponse?.user_id,
-                loginResponse?.name,
-                loginResponse?.phone_number,
-                loginResponse?.email
+                response?.id?.toInt()
             )
-
-            // update the shared pref here
-            settings.setUserId(loginResponse?.user_id.toString())
-//            settings.setBearerToken(loginResponse?.jwt_token.orEmpty())
-
-            user.copy()
+            order.copy()
         }
     }
 
-    suspend fun loginUser(userLogin: UserLogin): NetworkResult<User> {
+    suspend fun createOrderProduct(createOrderProduct: CreateOrderProduct): NetworkResult<Product> {
         return safeApiCall(Dispatchers.IO) {
-            val loginResponse = orderAPI.loginUser(userLogin)
-            val user = User(
+            val response = orderAPI.createOrderProduct(createOrderProduct)
+            val product = Product(
                 0,
-                loginResponse?.user_id,
-                loginResponse?.name,
-                loginResponse?.phone_number,
-                loginResponse?.email
+                response?.id?.toInt()
             )
-
-            // update the shared pref here
-            settings.setUserId(loginResponse?.user_id.toString())
-//            settings.setBearerToken(loginResponse?.jwt_token.orEmpty())
-
-            user.copy()
+            product.copy()
         }
     }
 
-    suspend fun saveUser(user: User) {
-        userDao.insert(user)
+    suspend fun saveOrder(order: Order) {
+        orderDao.insert(order)
     }
 
-    suspend fun getUserById(userId: String): User {
-        return userDao.getUserById(userId)
+    suspend fun saveOrderProduct(product: Product) {
+        productDao.insert(product)
     }
 }
