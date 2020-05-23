@@ -50,7 +50,6 @@
                 style="@style/rowLabelBody"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
                 android:layout_weight=".4"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Total Products" />
@@ -60,7 +59,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
-                android:layout_marginTop="@dimen/margin_small"
                 android:layout_weight=".6"
                 android:fontFamily="@font/poppins_semibold"
                 android:gravity="end"
@@ -77,7 +75,6 @@
                 style="@style/rowLabelBody"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
                 android:layout_weight=".4"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Order Date" />
@@ -87,7 +84,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
-                android:layout_marginTop="@dimen/margin_small"
                 android:layout_weight=".6"
                 android:fontFamily="@font/poppins_semibold"
                 android:gravity="end"

@@ -1,5 +1,7 @@
 package co.shara.data.repo
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
 import co.shara.data.api.OrderAPI
 import co.shara.data.dao.OrderDao
 import co.shara.data.dao.ProductDao
@@ -55,5 +57,9 @@ class OrderRepository(
 
     suspend fun saveOrderProduct(product: Product) {
         productDao.insert(product)
+    }
+
+    suspend fun getOrders(): LiveData<List<Order>> {
+        return orderDao.getOrders().asLiveData()
     }
 }

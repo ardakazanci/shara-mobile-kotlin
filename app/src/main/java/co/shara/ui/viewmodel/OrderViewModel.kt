@@ -1,5 +1,6 @@
 package co.shara.ui.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import co.shara.data.model.Order
 import co.shara.data.model.Product
@@ -31,5 +32,9 @@ class OrderViewModel(
 
     suspend fun saveOrderProduct(product: Product) {
         return orderRepository.saveOrderProduct(product)
+    }
+
+    suspend fun getOrders(): LiveData<List<Order>> {
+        return orderRepository.getOrders()
     }
 }
