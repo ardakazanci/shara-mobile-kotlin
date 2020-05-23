@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/padding_normal"
+    android:paddingTop="@dimen/padding_medium"
+    android:paddingEnd="@dimen/padding_normal"
+    android:paddingBottom="@dimen/padding_medium">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewProductName"
+                style="@style/rowLabelBody"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".6"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Ajab Home Baking Flour" />
+
+            <TextView
+                android:id="@+id/textViewProductPrice"
+                style="@style/rowLabelBody"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_weight=".4"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="end"
+                tools:text="KES: 1,450" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/rowLabelBody"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".4"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Product UOM" />
+
+            <TextView
+                android:id="@+id/textViewProductUOM"
+                style="@style/rowLabelBody"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_weight=".6"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="end"
+                tools:text="1kg x 24 packets" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
