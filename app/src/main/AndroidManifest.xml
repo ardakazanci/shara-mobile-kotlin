@@ -7,7 +7,6 @@
 
     <application
         android:name=".Shara"
-        android:allowBackup="true"
         android:icon="@drawable/ic_shara_logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_shara_logo"
