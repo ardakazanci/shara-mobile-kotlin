@@ -62,4 +62,8 @@ class OrderRepository(
     fun getOrders(): LiveData<List<Order>> {
         return orderDao.getOrders().asLiveData()
     }
+
+    fun getOrderProducts(orderId: Int): LiveData<List<Product>> {
+        return productDao.getOrderProducts(orderId).asLiveData()
+    }
 }

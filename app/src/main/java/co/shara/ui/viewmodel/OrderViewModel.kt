@@ -34,4 +34,8 @@ class OrderViewModel(
     fun getOrders(): LiveData<List<Order>> {
         return orderRepository.getOrders()
     }
+
+    fun getOrderProducts(orderId: Int): LiveData<List<Product>> {
+        return orderRepository.getOrderProducts(orderId)
+    }
 }
