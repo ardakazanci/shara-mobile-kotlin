@@ -31,14 +31,6 @@ class OrderViewModel(
         }
     }
 
-    suspend fun saveOrder(order: Order) {
-        return orderRepository.saveOrder(order)
-    }
-
-    suspend fun saveOrderProduct(product: Product) {
-        return orderRepository.saveOrderProduct(product)
-    }
-
     fun getOrders(): LiveData<List<Order>> {
         return orderRepository.getOrders()
     }
