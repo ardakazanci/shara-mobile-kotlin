@@ -22,10 +22,10 @@ object OrderViewDiffer : DiffUtil.ItemCallback<Order>() {
     }
 }
 
-typealias ShipmentsViewClickListener = (Order) -> Unit
+typealias OrdersViewClickListener = (Order) -> Unit
 
 internal class OrderAdapter(
-    private val listener: ShipmentsViewClickListener
+    private val listener: OrdersViewClickListener
 ) : ListAdapter<Order, OrderAdapter.ViewHolder>(OrderViewDiffer) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -45,7 +45,7 @@ internal class OrderAdapter(
         private val textViewOrderDate: TextView = itemView.textViewOrderDate
         private val imageView: ImageView = itemView.imageViewSync
 
-        fun bind(consignment: Order, listener: ShipmentsViewClickListener) {
+        fun bind(consignment: Order, listener: OrdersViewClickListener) {
             textViewOrderNumber.text = "Order No # 0001"
             textViewProductCount.text = "2 Products"
             textViewOrderDate.text = "9 May, 2019"
