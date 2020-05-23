@@ -59,7 +59,7 @@ class OrderRepository(
         productDao.insert(product)
     }
 
-    suspend fun getOrders(): LiveData<List<Order>> {
+    fun getOrders(): LiveData<List<Order>> {
         return orderDao.getOrders().asLiveData()
     }
 }

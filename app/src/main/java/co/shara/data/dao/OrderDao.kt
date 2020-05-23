@@ -9,5 +9,5 @@ import kotlinx.coroutines.flow.Flow
 interface OrderDao : BaseDao<Order> {
 
     @Query("SELECT * FROM `Order`")
-    suspend fun getOrders(): Flow<List<Order>>
+    fun getOrders(): Flow<List<Order>>
 }

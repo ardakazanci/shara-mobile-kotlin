@@ -7,8 +7,11 @@ import co.shara.data.model.Product
 import co.shara.data.repo.OrderRepository
 import co.shara.data.retrofit.CreateOrder
 import co.shara.data.retrofit.CreateOrderProduct
-import co.shara.data.retrofit.OrderResponse
 import co.shara.network.NetworkResult
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class OrderViewModel(
     private val orderRepository: OrderRepository
@@ -22,8 +25,10 @@ class OrderViewModel(
         return orderRepository.createOrderProduct(createOrderProduct)
     }
 
-    suspend fun fetchMyOrders(): NetworkResult<OrderResponse> {
-        return orderRepository.fetchMyOrders()
+    fun fetchMyOrders() = GlobalScope.launch(Dispatchers.IO) {
+        withContext(Dispatchers.IO) {
+            orderRepository.fetchMyOrders()
+        }
     }
 
     suspend fun saveOrder(order: Order) {
@@ -34,7 +39,7 @@ class OrderViewModel(
         return orderRepository.saveOrderProduct(product)
     }
 
-    suspend fun getOrders(): LiveData<List<Order>> {
+    fun getOrders(): LiveData<List<Order>> {
         return orderRepository.getOrders()
     }
 }
