@@ -13,7 +13,7 @@ interface OrderAPI {
     @POST("/api/v1/order/product")
     suspend fun createOrderProduct(@Body createOrderProduct: CreateOrderProduct): CreateOrderProductResponse?
 
-    @GET("/api/v1/order/product")
+    @GET("/api/v1/order/products")
     suspend fun fetchMyOrders(): OrderResponse?
 
 }
