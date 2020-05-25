@@ -1,5 +1,8 @@
 package co.shara.data.retrofit
 
 data class CreateOrderResponse(
-    var id: String
+    var id: Int,
+    var order_number: String,
+    var created_at: String,
+    var updated_at: String
 )

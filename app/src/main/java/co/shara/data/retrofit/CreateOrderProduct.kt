@@ -1,5 +1,8 @@
 package co.shara.data.retrofit
 
 data class CreateOrderProduct(
-    var id: String
+    var order_id: Int,
+    var name: String,
+    var price: String,
+    var uom: String
 )
