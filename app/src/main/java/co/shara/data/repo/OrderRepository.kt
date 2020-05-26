@@ -38,7 +38,11 @@ class OrderRepository(
             val response = orderAPI.createOrderProduct(createOrderProduct)
             val product = Product(
                 0,
-                response?.id?.toInt()
+                response!!.id,
+                response.order_id,
+                response.name,
+                response.price,
+                response.uom
             )
             product.copy()
         }
