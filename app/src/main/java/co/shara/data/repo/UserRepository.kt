@@ -3,6 +3,7 @@ package co.shara.data.repo
 import co.shara.data.api.UserAPI
 import co.shara.data.retrofit.UserLogin
 import co.shara.data.retrofit.UserRegister
+import co.shara.data.retrofit.UserResponse
 import co.shara.network.NetworkResult
 import co.shara.network.safeApiCall
 import co.shara.settings.Settings
@@ -13,49 +14,25 @@ class UserRepository(
     private val settings: Settings
 ) {
 
-    suspend fun registerUser(userRegister: UserRegister): NetworkResult<User> {
+    suspend fun registerUser(userRegister: UserRegister): NetworkResult<UserResponse> {
         return safeApiCall(Dispatchers.IO) {
-            val loginResponse = userAPI.registerUser(userRegister)
-            val user = User(
-                0,
-                loginResponse?.user_id,
-                loginResponse?.name,
-                loginResponse?.phone_number,
-                loginResponse?.email
-            )
+            val registerResponse = userAPI.registerUser(userRegister)
 
             // update the shared pref here
-            settings.setUserId(loginResponse?.user_id.toString())
-//            settings.setBearerToken(loginResponse?.jwt_token.orEmpty())
+            settings.setBearerToken(registerResponse?.data?.token.toString())
 
-            user.copy()
+            registerResponse!!.copy()
         }
     }
 
-    suspend fun loginUser(userLogin: UserLogin): NetworkResult<User> {
+    suspend fun loginUser(userLogin: UserLogin): NetworkResult<UserResponse> {
         return safeApiCall(Dispatchers.IO) {
             val loginResponse = userAPI.loginUser(userLogin)
-            val user = User(
-                0,
-                loginResponse?.user_id,
-                loginResponse?.name,
-                loginResponse?.phone_number,
-                loginResponse?.email
-            )
 
             // update the shared pref here
-            settings.setUserId(loginResponse?.user_id.toString())
-//            settings.setBearerToken(loginResponse?.jwt_token.orEmpty())
+            settings.setBearerToken(loginResponse?.data?.token.toString())
 
-            user.copy()
+            loginResponse!!.copy()
         }
-    }
-
-    suspend fun saveUser(user: User) {
-        userDao.insert(user)
-    }
-
-    suspend fun getUserById(userId: String): User {
-        return userDao.getUserById(userId)
     }
 }

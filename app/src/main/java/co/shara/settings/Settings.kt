@@ -17,16 +17,6 @@ class Settings(
         }
     }
 
-    fun getUserId(): String? {
-        return settings.getString(SettingsConstants.USER_ID_KEY, "")
-    }
-
-    fun setUserId(user_id: String) {
-        settings.edit {
-            putString(SettingsConstants.USER_ID_KEY, user_id)
-        }
-    }
-
     fun isLoggedIn(): Boolean {
         return settings.getBoolean(SettingsConstants.LOGGED_IN_KEY, false)
     }

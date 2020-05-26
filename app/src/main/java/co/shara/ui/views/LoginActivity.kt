@@ -73,8 +73,6 @@ class LoginActivity : AppCompatActivity() {
                 userViewModel.loginUser(UserLogin(phoneNumber, password))) {
                 is NetworkResult.Success -> {
 
-                    userViewModel.saveUser(loginResult.data)
-
                     // update the shared pref here
                     settings.setIsLoggedIn(true)
 
