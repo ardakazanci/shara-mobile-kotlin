@@ -1,8 +1,6 @@
 package co.shara.data.repo
 
 import co.shara.data.api.UserAPI
-import co.shara.data.dao.UserDao
-import co.shara.data.model.User
 import co.shara.data.retrofit.UserLogin
 import co.shara.data.retrofit.UserRegister
 import co.shara.network.NetworkResult
@@ -11,7 +9,6 @@ import co.shara.settings.Settings
 import kotlinx.coroutines.Dispatchers
 
 class UserRepository(
-    private val userDao: UserDao,
     private val userAPI: UserAPI,
     private val settings: Settings
 ) {

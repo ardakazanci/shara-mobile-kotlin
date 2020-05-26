@@ -1,7 +1,6 @@
 package co.shara.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
-import co.shara.data.model.User
 import co.shara.data.repo.UserRepository
 import co.shara.data.retrofit.UserLogin
 import co.shara.data.retrofit.UserRegister
