@@ -58,9 +58,10 @@ class OrderActivity : AppCompatActivity() {
         if (it.isNullOrEmpty()) {
             swipe_container.visibility = View.GONE
             recycler_view_order_list.visibility = View.GONE
+            linearLayoutCompat.visibility = View.VISIBLE
         } else {
             swipe_container.isRefreshing = false
-            swipe_container.visibility = View.VISIBLE
+            linearLayoutCompat.visibility = View.GONE
             swipe_container.visibility = View.VISIBLE
             orderAdapter.submitList(it)
         }

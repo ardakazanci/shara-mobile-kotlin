@@ -14,6 +14,6 @@ interface OrderAPI {
     suspend fun createOrderProduct(@Body createOrderProduct: CreateOrderProduct): CreateOrderProductResponse?
 
     @GET("/api/v1/order/products")
-    suspend fun fetchMyOrders(): OrderResponse?
+    suspend fun fetchMyOrders(): List<OrderResponse>?
 
 }

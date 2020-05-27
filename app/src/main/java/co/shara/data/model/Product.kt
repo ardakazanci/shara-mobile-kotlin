@@ -8,8 +8,10 @@ data class Product(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val product_id: Int,
-    var order_id: Int,
-    var name: String,
-    var price: String,
-    var uom: String
+    val order_id: Int,
+    val name: String,
+    val price: String,
+    val uom: String,
+    val created_at: String,
+    val updated_at: String
 )
