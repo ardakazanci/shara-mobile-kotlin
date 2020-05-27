@@ -91,7 +91,9 @@ class RegisterActivity : AppCompatActivity() {
                     // update the shared pref here
                     settings.setIsLoggedIn(true)
 
-                    makeSnackbar("user registration is successful")
+                    val intent = Intent(applicationContext, OrderActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 }
                 is NetworkResult.ServerError -> {
                     makeSnackbar(loginResult.errorBody?.message ?: "Failed to register user.")
