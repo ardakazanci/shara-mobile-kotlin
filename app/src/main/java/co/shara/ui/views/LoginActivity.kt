@@ -45,12 +45,12 @@ class LoginActivity : AppCompatActivity() {
 
     fun validateUser(view: View) {
 
-        val phoneNumber = etPhoneNumber.text.toString().trim()
+        val email = etEmail.text.toString().trim()
         val password = etPin.text.toString().trim()
 
-        if (phoneNumber.isEmpty()) {
-            etPhoneNumber.error = "Phone number is required"
-            etPhoneNumber.requestFocus()
+        if (email.isEmpty()) {
+            etEmail.error = "Email is required"
+            etEmail.requestFocus()
             return
         }
 
@@ -60,17 +60,17 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        loginUser(phoneNumber, password)
+        loginUser(email, password)
     }
 
-    private fun loginUser(phoneNumber: String, password: String) {
+    private fun loginUser(email: String, password: String) {
 
 //        val progressDialog = makeProgressDialog("Signing In...")
 //        progressDialog.show()
 
         lifecycleScope.launch {
             when (val loginResult =
-                userViewModel.loginUser(UserLogin(phoneNumber, password))) {
+                userViewModel.loginUser(UserLogin(email, password))) {
                 is NetworkResult.Success -> {
 
                     // update the shared pref here

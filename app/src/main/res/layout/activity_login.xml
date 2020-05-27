@@ -14,14 +14,13 @@
         android:src="@drawable/ic_shara_logo" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/etPhoneNumber"
-        style="@style/authTextInputEditTextPhone"
+        android:id="@+id/etEmail"
+        style="@style/authTextInputEditTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
-        android:hint="@string/hint_enter_your_phone_number"
-        android:inputType="phone"
-        android:maxLength="15" />
+        android:hint="@string/hint_enter_your_email"
+        android:inputType="textEmailAddress" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etPin"
