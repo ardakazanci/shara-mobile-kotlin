@@ -85,7 +85,7 @@ class RegisterActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             when (val loginResult =
-                userViewModel.registerUser(UserRegister(name, email, phoneNumber, password))) {
+                userViewModel.registerUser(UserRegister(name, phoneNumber, email, password))) {
                 is NetworkResult.Success -> {
 
                     // update the shared pref here
