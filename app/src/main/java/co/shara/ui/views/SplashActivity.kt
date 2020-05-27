@@ -38,7 +38,7 @@ class SplashActivity : AppCompatActivity() {
                     finish()
                 }
             },
-            3000 // value in milliseconds
+            3000
         )
     }
 

@@ -12,6 +12,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:theme="@style/ToolbarTheme"
+        app:title="@string/app_name"
         app:titleTextColor="@color/white" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -30,6 +31,41 @@
             tools:listitem="@layout/row_order_item" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutCompat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/margin_normal"
+            app:srcCompat="@drawable/ic_shara_logo" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_normal"
+            android:layout_marginLeft="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:layout_marginRight="@dimen/margin_normal"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="center"
+            android:text="You have no orders. \n\nYou can create new consignments by tapping the button below" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
         android:id="@+id/fab_create_order"
