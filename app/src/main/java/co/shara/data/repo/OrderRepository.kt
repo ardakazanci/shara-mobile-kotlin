@@ -27,7 +27,11 @@ class OrderRepository(
             val response = orderAPI.createOrder(createOrder)
             val order = Order(
                 0,
-                response?.id?.toInt()
+                response!!.id,
+                response.user_id,
+                response.order_number,
+                response.created_at,
+                response.updated_at
             )
             order.copy()
         }
@@ -42,16 +46,22 @@ class OrderRepository(
                 response.order_id,
                 response.name,
                 response.price,
-                response.uom
+                response.uom,
+                response.created_at,
+                response.updated_at
             )
             product.copy()
         }
     }
 
-    suspend fun fetchMyOrders(): NetworkResult<OrderResponse> {
+    suspend fun fetchOrderProducts() {
+
+    }
+
+    suspend fun fetchMyOrders(): List<OrderResponse> {
         return safeApiCall(Dispatchers.IO) {
             val response = orderAPI.fetchMyOrders()
-            response!!.copy()
+
         }
     }
 
