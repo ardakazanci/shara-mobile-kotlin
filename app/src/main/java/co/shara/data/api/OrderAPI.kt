@@ -1,6 +1,7 @@
 package co.shara.data.api
 
 import co.shara.data.retrofit.*
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -14,6 +15,6 @@ interface OrderAPI {
     suspend fun createOrderProduct(@Body createOrderProduct: CreateOrderProduct): CreateOrderProductResponse?
 
     @GET("/api/v1/order/products")
-    suspend fun fetchMyOrders(): List<OrderResponse>
+    fun fetchMyOrders(): Response<List<OrderResponse>>
 
 }

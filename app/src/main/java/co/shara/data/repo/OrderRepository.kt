@@ -9,11 +9,11 @@ import co.shara.data.model.Order
 import co.shara.data.model.Product
 import co.shara.data.retrofit.CreateOrder
 import co.shara.data.retrofit.CreateOrderProduct
-import co.shara.data.retrofit.OrderResponse
 import co.shara.network.NetworkResult
 import co.shara.network.safeApiCall
 import co.shara.settings.Settings
 import kotlinx.coroutines.Dispatchers
+import timber.log.Timber
 
 class OrderRepository(
     private val orderDao: OrderDao,
@@ -55,22 +55,34 @@ class OrderRepository(
     }
 
     suspend fun fetchOrderProducts() {
-
+        val response = fetchMyOrders()
+        orderDao.insert(response)
     }
 
-    suspend fun fetchMyOrders(): List<OrderResponse> {
-        return safeApiCall(Dispatchers.IO) {
-            val response = orderAPI.fetchMyOrders()
-
+    private suspend fun fetchMyOrders(): List<Order> {
+        return try {
+            val response =
+                orderAPI.fetchMyOrders()
+            if (response.isSuccessful) {
+                val result = response.body()
+                result?.map {
+                    Order(
+                        0,
+                        it.id,
+                        it.user_id,
+                        it.order_number,
+                        it.created_at,
+                        it.updated_at
+                    )
+                }.orEmpty()
+            } else {
+                Timber.e("Failed to download orders")
+                emptyList()
+            }
+        } catch (t: Throwable) {
+            Timber.e(t)
+            emptyList()
         }
-    }
-
-    suspend fun saveOrder(order: Order) {
-        orderDao.insert(order)
-    }
-
-    suspend fun saveOrderProduct(product: Product) {
-        productDao.insert(product)
     }
 
     fun getOrders(): LiveData<List<Order>> {
