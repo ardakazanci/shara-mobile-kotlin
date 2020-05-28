@@ -47,7 +47,7 @@ internal class ProductAdapter(
         @SuppressLint("SetTextI18n")
         fun bind(product: Product, listener: ProductProductViewClickListener) {
             textViewProductName.text = product.name
-            textViewProductPrice.text = "KES : " + product.price
+            textViewProductPrice.text = "KES " + product.price
             textViewProductUOM.text = product.uom
 
             itemView.setOnClickListener {

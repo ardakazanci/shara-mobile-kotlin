@@ -28,6 +28,11 @@ class OrderProductActivity : AppCompatActivity() {
 
         orderId = intent?.getStringExtra("order_id").toString()
 
+        toolbar.title = "Order No # $orderId"
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
         val itemDecor = DividerItemDecoration(this, LinearLayout.VERTICAL)
         val layoutManager = LinearLayoutManager(this)
         recycler_view_order_product_list.layoutManager = layoutManager
@@ -53,5 +58,11 @@ class OrderProductActivity : AppCompatActivity() {
             linearLayoutCompat.visibility = View.GONE
             productAdapter.submitList(it)
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        onBackPressed()
+        return true
     }
 }
