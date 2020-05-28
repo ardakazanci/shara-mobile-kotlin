@@ -1,9 +1,10 @@
 package co.shara.data.model
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(indices = [Index(value = ["product_id"], unique = true)])
 data class Product(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
