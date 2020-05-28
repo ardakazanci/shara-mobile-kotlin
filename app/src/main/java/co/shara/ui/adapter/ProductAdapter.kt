@@ -1,5 +1,6 @@
 package co.shara.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,13 +44,14 @@ internal class ProductAdapter(
         private val textViewProductPrice: TextView = itemView.textViewProductPrice
         private val textViewProductUOM: TextView = itemView.textViewProductUOM
 
-        fun bind(consignment: Product, listener: ProductProductViewClickListener) {
-            textViewProductName.text = "Ajab Home Baking Flour"
-            textViewProductPrice.text = "KES: 1,450"
-            textViewProductUOM.text = "1kg x 24 packets"
+        @SuppressLint("SetTextI18n")
+        fun bind(product: Product, listener: ProductProductViewClickListener) {
+            textViewProductName.text = product.name
+            textViewProductPrice.text = "KES : " + product.price
+            textViewProductUOM.text = product.uom
 
             itemView.setOnClickListener {
-                listener.invoke(consignment)
+                listener.invoke(product)
             }
         }
     }
