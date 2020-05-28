@@ -80,7 +80,7 @@ fun Activity.makeProgressDialog(message: String): AlertDialog {
         false
     )
 
-    view.findViewById<TextView>(R.id.messageTextView).text = message
+    view.findViewById<TextView>(R.id.messageTextView)?.text = message
 
     val builder = MaterialAlertDialogBuilder(this)
     builder.setView(view)
