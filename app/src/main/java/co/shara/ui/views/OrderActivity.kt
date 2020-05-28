@@ -21,6 +21,7 @@ import co.shara.data.retrofit.CreateOrder
 import co.shara.network.NetworkResult
 import co.shara.ui.adapter.OrderAdapter
 import co.shara.ui.viewmodel.OrderViewModel
+import co.shara.util.makeProgressDialog
 import co.shara.util.makeSnackbar
 import kotlinx.android.synthetic.main.activity_order.*
 import kotlinx.coroutines.launch
@@ -118,8 +119,8 @@ class OrderActivity : AppCompatActivity() {
 
     private fun createOrder(orderNumber: String) {
 
-//        val progressDialog = makeProgressDialog("Creating Order...")
-//        progressDialog.show()
+        val progressDialog = makeProgressDialog("Creating Order...")
+        progressDialog.show()
 
         lifecycleScope.launch {
             when (val orderResult =
@@ -129,19 +130,22 @@ class OrderActivity : AppCompatActivity() {
                     )
                 )) {
                 is NetworkResult.Success -> {
-
+                    progressDialog.dismiss()
                     val intent = Intent(applicationContext, OrderActivity::class.java)
                     startActivity(intent)
                     finish()
 
                 }
                 is NetworkResult.ServerError -> {
+                    progressDialog.dismiss()
                     makeSnackbar(orderResult.errorBody?.message ?: "Failed to create order...")
                 }
                 NetworkResult.NetworkError -> {
+                    progressDialog.dismiss()
                     makeSnackbar("A network error occurred. Please try again later.")
                 }
                 NetworkResult.Loading -> {
+                    progressDialog.show()
                 }
             }
         }

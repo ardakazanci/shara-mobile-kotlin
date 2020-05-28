@@ -13,6 +13,7 @@ import co.shara.network.NetworkResult
 import co.shara.settings.Settings
 import co.shara.ui.viewmodel.UserViewModel
 import co.shara.util.Util
+import co.shara.util.makeProgressDialog
 import co.shara.util.makeSnackbar
 import co.shara.util.makeStatusBarTransparent
 import kotlinx.android.synthetic.main.activity_login.*
@@ -65,14 +66,14 @@ class LoginActivity : AppCompatActivity() {
 
     private fun loginUser(email: String, password: String) {
 
-//        val progressDialog = makeProgressDialog("Signing In...")
-//        progressDialog.show()
+        val progressDialog = makeProgressDialog("Signing In...")
+        progressDialog.show()
 
         lifecycleScope.launch {
             when (val loginResult =
                 userViewModel.loginUser(UserLogin(email, password))) {
                 is NetworkResult.Success -> {
-
+                    progressDialog.dismiss()
                     // update the shared pref here
                     settings.setIsLoggedIn(true)
 
@@ -82,12 +83,15 @@ class LoginActivity : AppCompatActivity() {
 
                 }
                 is NetworkResult.ServerError -> {
+                    progressDialog.dismiss()
                     makeSnackbar(loginResult.errorBody?.message ?: "Failed to login user.")
                 }
                 NetworkResult.NetworkError -> {
+                    progressDialog.dismiss()
                     makeSnackbar("A network error occurred. Please try again later.")
                 }
                 NetworkResult.Loading -> {
+                    progressDialog.show()
                 }
             }
         }

@@ -13,6 +13,7 @@ import co.shara.network.NetworkResult
 import co.shara.settings.Settings
 import co.shara.ui.viewmodel.UserViewModel
 import co.shara.util.Util
+import co.shara.util.makeProgressDialog
 import co.shara.util.makeSnackbar
 import co.shara.util.makeStatusBarTransparent
 import kotlinx.android.synthetic.main.activity_register.*
@@ -80,14 +81,14 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun registerUser(name: String, email: String, phoneNumber: String, password: String) {
 
-//        val progressDialog = makeProgressDialog("Signing In...")
-//        progressDialog.show()
+        val progressDialog = makeProgressDialog("Signing In...")
+        progressDialog.show()
 
         lifecycleScope.launch {
             when (val loginResult =
                 userViewModel.registerUser(UserRegister(name, phoneNumber, email, password))) {
                 is NetworkResult.Success -> {
-
+                    progressDialog.dismiss()
                     // update the shared pref here
                     settings.setIsLoggedIn(true)
 
@@ -96,12 +97,15 @@ class RegisterActivity : AppCompatActivity() {
                     finish()
                 }
                 is NetworkResult.ServerError -> {
+                    progressDialog.dismiss()
                     makeSnackbar(loginResult.errorBody?.message ?: "Failed to register user.")
                 }
                 NetworkResult.NetworkError -> {
+                    progressDialog.dismiss()
                     makeSnackbar("A network error occurred. Please try again later.")
                 }
                 NetworkResult.Loading -> {
+                    progressDialog.show()
                 }
             }
         }

@@ -20,6 +20,7 @@ import co.shara.data.retrofit.CreateOrderProduct
 import co.shara.network.NetworkResult
 import co.shara.ui.adapter.ProductAdapter
 import co.shara.ui.viewmodel.OrderViewModel
+import co.shara.util.makeProgressDialog
 import co.shara.util.makeSnackbar
 import kotlinx.android.synthetic.main.activity_order_product.*
 import kotlinx.coroutines.launch
@@ -121,8 +122,8 @@ class OrderProductActivity : AppCompatActivity() {
 
     private fun createOrderProduct(name: String, price: String, uom: String) {
 
-//        val progressDialog = makeProgressDialog("Creating Order...")
-//        progressDialog.show()
+        val progressDialog = makeProgressDialog("Creating Order Product...")
+        progressDialog.show()
 
         lifecycleScope.launch {
             when (val orderResult =
@@ -135,21 +136,24 @@ class OrderProductActivity : AppCompatActivity() {
                     )
                 )) {
                 is NetworkResult.Success -> {
-
+                    progressDialog.dismiss()
                     val intent = Intent(applicationContext, OrderActivity::class.java)
                     startActivity(intent)
                     finish()
 
                 }
                 is NetworkResult.ServerError -> {
+                    progressDialog.dismiss()
                     makeSnackbar(
                         orderResult.errorBody?.message ?: "Failed to create order product..."
                     )
                 }
                 NetworkResult.NetworkError -> {
+                    progressDialog.dismiss()
                     makeSnackbar("A network error occurred. Please try again later.")
                 }
                 NetworkResult.Loading -> {
+                    progressDialog.show()
                 }
             }
         }
