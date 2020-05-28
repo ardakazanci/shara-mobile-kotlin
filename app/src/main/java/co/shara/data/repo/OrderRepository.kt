@@ -11,16 +11,13 @@ import co.shara.data.retrofit.CreateOrder
 import co.shara.data.retrofit.CreateOrderProduct
 import co.shara.network.NetworkResult
 import co.shara.network.safeApiCall
-import co.shara.settings.Settings
-import co.shara.ui.model.OrderSummary
 import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
 
 class OrderRepository(
     private val orderDao: OrderDao,
     private val productDao: ProductDao,
-    private val orderAPI: OrderAPI,
-    private val settings: Settings
+    private val orderAPI: OrderAPI
 ) {
 
     suspend fun createOrder(createOrder: CreateOrder): NetworkResult<Order> {
@@ -97,7 +94,7 @@ class OrderRepository(
         }
     }
 
-    fun getOrders(): LiveData<List<OrderSummary>> {
+    fun getOrders(): LiveData<List<Order>> {
         return orderDao.getOrders().asLiveData()
     }
 

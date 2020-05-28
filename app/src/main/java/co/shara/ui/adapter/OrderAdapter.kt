@@ -10,24 +10,24 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import co.shara.R
-import co.shara.ui.model.OrderSummary
+import co.shara.data.model.Order
 import kotlinx.android.synthetic.main.row_order_item.view.*
 
-object OrderSummaryViewDiffer : DiffUtil.ItemCallback<OrderSummary>() {
-    override fun areItemsTheSame(oldItem: OrderSummary, newItem: OrderSummary): Boolean {
-        return oldItem.orderNumber == newItem.orderNumber
+object OrderViewDiffer : DiffUtil.ItemCallback<Order>() {
+    override fun areItemsTheSame(oldItem: Order, newItem: Order): Boolean {
+        return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: OrderSummary, newItem: OrderSummary): Boolean {
+    override fun areContentsTheSame(oldItem: Order, newItem: Order): Boolean {
         return oldItem == newItem
     }
 }
 
-typealias OrderViewClickListener = (OrderSummary) -> Unit
+typealias OrderViewClickListener = (Order) -> Unit
 
 internal class OrderAdapter(
     private val listener: OrderViewClickListener
-) : ListAdapter<OrderSummary, OrderAdapter.ViewHolder>(OrderSummaryViewDiffer) {
+) : ListAdapter<Order, OrderAdapter.ViewHolder>(OrderViewDiffer) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -42,15 +42,13 @@ internal class OrderAdapter(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val textViewOrderNumber: TextView = itemView.textViewOrderNumber
-        private val textViewProductCount: TextView = itemView.textViewProductCount
         private val textViewOrderDate: TextView = itemView.textViewOrderDate
         private val imageView: ImageView = itemView.imageViewSync
 
         @SuppressLint("SetTextI18n")
-        fun bind(order: OrderSummary, listener: OrderViewClickListener) {
-            textViewOrderNumber.text = "Order No # " + order.orderNumber
-            textViewProductCount.text = order.totalProduct + " Products"
-            textViewOrderDate.text = order.createdDate
+        fun bind(order: Order, listener: OrderViewClickListener) {
+            textViewOrderNumber.text = "Order No # " + order.id
+            textViewOrderDate.text = order.created_at
             imageView.setImageResource(R.drawable.ic_sync_success)
 
             itemView.setOnClickListener {

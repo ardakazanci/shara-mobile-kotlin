@@ -8,7 +8,6 @@ import co.shara.data.repo.OrderRepository
 import co.shara.data.retrofit.CreateOrder
 import co.shara.data.retrofit.CreateOrderProduct
 import co.shara.network.NetworkResult
-import co.shara.ui.model.OrderSummary
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -32,7 +31,7 @@ class OrderViewModel(
         }
     }
 
-    fun getOrders(): LiveData<List<OrderSummary>> {
+    fun getOrders(): LiveData<List<Order>> {
         return orderRepository.getOrders()
     }
 
