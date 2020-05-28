@@ -12,6 +12,7 @@ import co.shara.data.retrofit.CreateOrderProduct
 import co.shara.network.NetworkResult
 import co.shara.network.safeApiCall
 import co.shara.settings.Settings
+import co.shara.ui.model.OrderSummary
 import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
 
@@ -85,7 +86,7 @@ class OrderRepository(
         }
     }
 
-    fun getOrders(): LiveData<List<Order>> {
+    fun getOrders(): LiveData<List<OrderSummary>> {
         return orderDao.getOrders().asLiveData()
     }
 

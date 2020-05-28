@@ -9,8 +9,8 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import co.shara.R
-import co.shara.data.model.Order
 import co.shara.ui.adapter.OrderAdapter
+import co.shara.ui.model.OrderSummary
 import co.shara.ui.viewmodel.OrderViewModel
 import kotlinx.android.synthetic.main.activity_order.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -34,7 +34,7 @@ class OrderActivity : AppCompatActivity() {
 
         orderAdapter = OrderAdapter { order ->
             val intent = Intent(this, OrderProductActivity::class.java)
-            intent.putExtra("order_id", order.order_id.toString())
+            intent.putExtra("order_id", order.orderNumber)
             startActivity(intent)
         }
 
@@ -54,7 +54,7 @@ class OrderActivity : AppCompatActivity() {
         }
     }
 
-    private fun setUpViews(it: List<Order>) {
+    private fun setUpViews(it: List<OrderSummary>) {
         if (it.isNullOrEmpty()) {
             swipe_container.visibility = View.GONE
             recycler_view_order_list.visibility = View.GONE
