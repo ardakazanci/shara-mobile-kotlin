@@ -9,6 +9,6 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface OrderDao : BaseDao<Order> {
 
-    @Query("SELECT a.order_number AS orderNumber,COUNT(b.product_id) AS totalProduct, a.created_at AS createdDate FROM `Order` a INNER JOIN Product b ON a.order_id = b.order_id")
+    @Query("SELECT a.order_number AS orderNumber, COUNT(b.product_id) AS totalProduct, a.created_at AS createdDate FROM `Order` a LEFT JOIN Product b ON a.order_id = b.order_id") //
     fun getOrders(): Flow<List<OrderSummary>>
 }
