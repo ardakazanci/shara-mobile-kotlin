@@ -8,6 +8,6 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface OrderDao : BaseDao<Order> {
 
-    @Query("SELECT * FROM `Order`")
+    @Query("SELECT * FROM `Order` ORDER BY created_at DESC")
     fun getOrders(): Flow<List<Order>>
 }

@@ -46,7 +46,7 @@ class OrderActivity : AppCompatActivity() {
 
         orderAdapter = OrderAdapter { order ->
             val intent = Intent(this, OrderProductActivity::class.java)
-            intent.putExtra("order_id", order.order_id)
+            intent.putExtra("order_id", order.order_id.toString())
             startActivity(intent)
         }
 

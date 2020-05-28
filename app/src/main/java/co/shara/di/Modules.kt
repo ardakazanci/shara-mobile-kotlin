@@ -85,7 +85,7 @@ val daoModule = module {
 
 val repositoriesModule = module {
     single { UserRepository(get(), get()) }
-    single { OrderRepository(get(), get(), get(), get()) }
+    single { OrderRepository(get(), get(), get()) }
 }
 
 val viewModelsModule = module {

@@ -47,7 +47,7 @@ internal class OrderAdapter(
 
         @SuppressLint("SetTextI18n")
         fun bind(order: Order, listener: OrderViewClickListener) {
-            textViewOrderNumber.text = "Order No # " + order.id
+            textViewOrderNumber.text = "Order No # " + order.order_id
             textViewOrderDate.text = order.created_at
             imageView.setImageResource(R.drawable.ic_sync_success)
 
