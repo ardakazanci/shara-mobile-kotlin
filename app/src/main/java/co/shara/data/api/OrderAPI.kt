@@ -8,10 +8,10 @@ import retrofit2.http.POST
 
 interface OrderAPI {
 
-    @POST("/api/v1/order/create")
+    @POST("/api/v1/order")
     suspend fun createOrder(@Body createOrder: CreateOrder): CreateOrderResponse?
 
-    @POST("/api/v1/order/product")
+    @POST("/api/v1/product")
     suspend fun createOrderProduct(@Body createOrderProduct: CreateOrderProduct): CreateOrderProductResponse?
 
     @GET("/api/v1/history")
