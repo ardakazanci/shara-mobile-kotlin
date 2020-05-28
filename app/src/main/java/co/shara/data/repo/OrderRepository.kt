@@ -55,34 +55,45 @@ class OrderRepository(
         }
     }
 
-    suspend fun fetchOrderProducts() {
-        val response = fetchMyOrders()
-        orderDao.insert(response)
-    }
-
-    private suspend fun fetchMyOrders(): List<Order> {
-        return try {
+    suspend fun fetchMyOrders() {
+        try {
             val response =
                 orderAPI.fetchMyOrders()
             if (response.isSuccessful) {
                 val result = response.body()
-                result?.map {
-                    Order(
-                        0,
-                        it.id,
-                        it.user_id,
-                        it.order_number,
-                        it.created_at,
-                        it.updated_at
-                    )
-                }.orEmpty()
+                orderDao.insert(
+                    result?.map {
+                        Order(
+                            0,
+                            it.id,
+                            it.user_id,
+                            it.order_number,
+                            it.created_at,
+                            it.updated_at
+                        )
+                    }.orEmpty()
+                )
+                result?.map { it ->
+                    it.product.forEach {
+                        productDao.insert(
+                            Product(
+                                0,
+                                it.id,
+                                it.order_id,
+                                it.name,
+                                it.price,
+                                it.uom,
+                                it.created_at,
+                                it.updated_at
+                            )
+                        )
+                    }
+                }
             } else {
                 Timber.e("Failed to download orders")
-                emptyList()
             }
         } catch (t: Throwable) {
             Timber.e(t)
-            emptyList()
         }
     }
 

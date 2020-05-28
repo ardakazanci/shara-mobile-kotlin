@@ -28,7 +28,7 @@ class OrderViewModel(
 
     fun fetchMyOrders() = GlobalScope.launch(Dispatchers.IO) {
         withContext(Dispatchers.IO) {
-            orderRepository.fetchOrderProducts()
+            orderRepository.fetchMyOrders()
         }
     }
 
