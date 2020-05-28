@@ -1,7 +1,11 @@
 package co.shara.ui.views
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
@@ -17,6 +21,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class OrderProductActivity : AppCompatActivity() {
 
     private val orderViewModel: OrderViewModel by viewModel()
+    private var dialog: Dialog? = null
 
     private lateinit var productAdapter: ProductAdapter
 
@@ -45,6 +50,10 @@ class OrderProductActivity : AppCompatActivity() {
         orderViewModel.getOrderProducts(orderId.toInt()).observe(this) {
             setUpViews(it)
         }
+
+        fab_create_order_product.setOnClickListener {
+            showOrderProductDialog()
+        }
     }
 
     private fun setUpViews(it: List<Product>) {
@@ -64,5 +73,23 @@ class OrderProductActivity : AppCompatActivity() {
         finish()
         onBackPressed()
         return true
+    }
+
+    private fun showOrderProductDialog() {
+
+        dialog = Dialog(this@OrderProductActivity)
+        dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog!!.setCancelable(false)
+        dialog!!.setContentView(R.layout.dialog_create_product)
+
+        val window: Window? = dialog!!.window
+        window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+
+        val buttonClose: Button = dialog!!.findViewById(R.id.buttonClose) as Button
+        val buttonOk: Button = dialog!!.findViewById(R.id.buttonOk) as Button
+
+        buttonClose.setOnClickListener { dialog!!.dismiss() }
+
+        dialog!!.show()
     }
 }

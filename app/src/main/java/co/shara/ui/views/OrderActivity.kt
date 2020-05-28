@@ -1,8 +1,12 @@
 package co.shara.ui.views
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
@@ -18,6 +22,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class OrderActivity : AppCompatActivity() {
 
     private val orderViewModel: OrderViewModel by viewModel()
+    private var dialog: Dialog? = null
 
     private lateinit var orderAdapter: OrderAdapter
 
@@ -43,6 +48,10 @@ class OrderActivity : AppCompatActivity() {
         orderViewModel.getOrders().observe(this) {
             setUpViews(it)
         }
+
+        fab_create_order.setOnClickListener {
+            showOrderDialog()
+        }
     }
 
     private fun refreshDataAndSync() {
@@ -65,5 +74,23 @@ class OrderActivity : AppCompatActivity() {
             swipe_container.visibility = View.VISIBLE
             orderAdapter.submitList(it)
         }
+    }
+
+    private fun showOrderDialog() {
+
+        dialog = Dialog(this@OrderActivity)
+        dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog!!.setCancelable(false)
+        dialog!!.setContentView(R.layout.dialog_create_order)
+
+        val window: Window? = dialog!!.window
+        window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+
+        val buttonClose: Button = dialog!!.findViewById(R.id.buttonClose) as Button
+        val buttonOk: Button = dialog!!.findViewById(R.id.buttonOk) as Button
+
+        buttonClose.setOnClickListener { dialog!!.dismiss() }
+
+        dialog!!.show()
     }
 }
