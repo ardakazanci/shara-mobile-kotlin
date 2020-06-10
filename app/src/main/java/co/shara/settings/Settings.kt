@@ -34,6 +34,5 @@ class Settings(
 
 object SettingsConstants {
     const val BEARER_TOKEN_KEY = "bearer_token"
-    const val USER_ID_KEY = "user_id"
     const val LOGGED_IN_KEY = "is_logged_in"
 }
